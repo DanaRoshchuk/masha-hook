@@ -24,7 +24,7 @@ fi
 
 
 # Define API URL
-API_URL="https://${SCALR_HOSTNAME}/api/iacp/v3/workspaces/${SCALR_WORKSPACE_ID}"
+API_URL="https://${SCALR_HOSTNAME}/api/iacp/v3/workspace/${SCALR_WORKSPACE_ID}"
 
 # Perform GET request
 echo "Fetching workspace details from $API_URL..."
