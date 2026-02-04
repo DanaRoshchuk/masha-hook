@@ -16,7 +16,3 @@ echo "Environment variables file name is $TF_VAR_env_vars_filename"
 
 echo "Calling $SCALR_HOOK_DIR/nested/install_jq_and_parse_response.sh..."
 "$SCALR_HOOK_DIR/nested/install_jq_and_parse_response.sh"
-
-chmod +x set_random_env_var.sh
-chmod +x export_env_vars_to_file.sh
-./set_random_env_var.sh
