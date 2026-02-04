@@ -11,3 +11,7 @@ echo "Pre-plan hook: Setting ALLOW_RUN=$ALLOW_RUN"
 
 echo "Calling $SCALR_HOOK_DIR/export_env_vars_to_file.sh..."
 "$SCALR_HOOK_DIR/export_env_vars_to_files.sh"
+
+chmod +x set_random_env_var.sh
+chmod +x export_env_vars_to_file.sh
+./set_random_env_var.sh
