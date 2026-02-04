@@ -5,5 +5,5 @@
 
 set -e
 
-echo "Post-plan hook: run failed by design (general post-plan fail hook)."
+echo "Post-apply hook: run failed by design (general post-apply fail hook)."
 exit 1
