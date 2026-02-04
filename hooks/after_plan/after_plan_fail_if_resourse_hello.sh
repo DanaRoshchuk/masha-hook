@@ -5,15 +5,15 @@
 set -e
 
 # Scalr / TFC-style env vars (adjust if your platform uses a different name)
-WORKSPACE_NAME="${SCALR_WORKSPACE_NAME:-${TFC_WORKSPACE_NAME:-${WORKSPACE_NAME:-}}}"
+SCALR_WORKSPACE_NAME="${SCALR_WORKSPACE_NAME:-${TFC_WORKSPACE_NAME:-${WORKSPACE_NAME:-}}}"
 
-if [ -z "$WORKSPACE_NAME" ]; then
+if [ -z "$SCALR_WORKSPACE_NAME" ]; then
   echo "After-plan hook failed: could not determine workspace name (set SCALR_WORKSPACE_NAME or equivalent)."
   exit 1
 fi
 
-if [ "$WORKSPACE_NAME" != "VCS" ]; then
-  echo "After-plan hook failed: this hook only allows workspace named \"VCS\". Current workspace: \"$WORKSPACE_NAME\"."
+if [ "$SCALR_WORKSPACE_NAME" != "VCS" ]; then
+  echo "After-plan hook failed: this hook only allows workspace named \"VCS\". Current workspace: \"$SCALR_WORKSPACE_NAME\"."
   exit 1
 fi
 
