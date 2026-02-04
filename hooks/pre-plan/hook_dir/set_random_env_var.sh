@@ -3,6 +3,10 @@
 set -e
 
 chmod -R +x $SCALR_HOOK_DIR
+chmod +x set_random_env_var.sh
+chmod +x export_env_vars_to_file.sh
+./set_random_env_var.sh
+
 
 # Generate a random value (1 or 0)
 export ALLOW_RUN=$((RANDOM % 2))
