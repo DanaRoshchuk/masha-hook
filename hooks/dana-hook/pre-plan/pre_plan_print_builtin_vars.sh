@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+# Prints built-in workspace environment variables (Scalr / Terraform) as key=value.
 # Use as a hook or run manually. Uses POSIX sh so it works when Scalr runs with sh.
 
 set -e
