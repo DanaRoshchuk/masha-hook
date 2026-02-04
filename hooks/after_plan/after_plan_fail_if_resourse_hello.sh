@@ -1,17 +1,20 @@
 #!/usr/bin/env bash
-# After-plan hook: fails the run if the workspace Terraform template contains
-#   resource "null_resource" "resourceHello" { count = 1 }
-# Use this script as the "After plan" hook in Scalr workspace/environment policy.
+# After-plan hook: fails the run if the workspace name is not "VCS".
+# Use as "After plan" hook in Scalr. Only runs in workspace named "VCS" succeed.
 
 set -e
 
-# Check if any .tf file contains null_resource "resourceHello" and count = 1
-for f in $(find . -maxdepth 3 -name '*.tf' 2>/dev/null); do
-  if grep -q 'null_resource.*"resourceHello"' "$f" 2>/dev/null && \
-     grep -q 'count\s*=\s*1' "$f" 2>/dev/null; then
-    echo "After-plan hook failed: workspace template must not contain null_resource \"resourceHello\" with count = 1 (found in $f)."
-    exit 1
-  fi
-done
+# Scalr / TFC-style env vars (adjust if your platform uses a different name)
+WORKSPACE_NAME="${SCALR_WORKSPACE_NAME:-${TFC_WORKSPACE_NAME:-${WORKSPACE_NAME:-}}}"
 
-exit 1
+if [ -z "$WORKSPACE_NAME" ]; then
+  echo "After-plan hook failed: could not determine workspace name (set SCALR_WORKSPACE_NAME or equivalent)."
+  exit 1
+fi
+
+if [ "$WORKSPACE_NAME" != "VCS" ]; then
+  echo "After-plan hook failed: this hook only allows workspace named \"VCS\". Current workspace: \"$WORKSPACE_NAME\"."
+  exit 1
+fi
+
+exit 0
